@@ -24,7 +24,8 @@ class PsrRequestResponseService
      */
     public static function replaceResponse(Response $psr7Response, ActionResponse $actionResponse): string
     {
-        $actionResponse->setComponentParameter(ReplaceHttpResponseComponent::class, ReplaceHttpResponseComponent::PARAMETER_RESPONSE, $psr7Response);
+        // Directly set the response using the new Flow 7+ recommended method
+        $actionResponse->replaceHttpResponse($psr7Response);
         return $psr7Response->getBody()->getContents();
     }
 
